@@ -26,7 +26,7 @@ export const adminUsuarios = {
 
         usuarios.usuarios.forEach(user => {
             tablaHTML += `
-                <tr>
+                <tr class="fila">
                     <th scope="row">${user.id}</th>
                     <td>${user.nick}</td>
                     <td>${user.email}</td>
@@ -39,8 +39,7 @@ export const adminUsuarios = {
             `
         });
 
-        document.querySelector('#tablaAdmin').innerHTML = adminUsuarios.template
-        document.querySelector('#tablaUsuarios').innerHTML = tablaHTML
+        document.querySelector('#tablaUsuarios').innerHTML = tablaHTML 
         
     }
 }

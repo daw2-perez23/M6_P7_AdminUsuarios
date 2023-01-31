@@ -1,6 +1,6 @@
 
 export const about = {
-	template: ` ` ,
+	template: ` ADIOS ` ,
     
 	script: ()=>{
 

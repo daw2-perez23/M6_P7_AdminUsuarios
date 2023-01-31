@@ -1,6 +1,6 @@
 
 export const home = {
-	template: ` ` ,
+	template: ` HOLA ` ,
     
 	script: ()=>{
 

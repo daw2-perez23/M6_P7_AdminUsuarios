@@ -1,6 +1,7 @@
-import { about } from "../vistas/about";
-import { admin } from "../vistas/admin";
-import { home } from "../vistas/home";
+import { about } from "../vistas/about.js";
+import { admin } from "../vistas/admin.js";
+import { home } from "../vistas/home.js";
+import { adminUsuarios } from "./adminUsuarios.js";
 import Swal from "sweetalert2";
 
 export const router = {
@@ -9,40 +10,38 @@ export const router = {
         home.script()
     },
     admin: ()=>{
-        document.querySelector('main').innerHTML = admin.template
-        adminUser.script()
+        document.querySelector('main').innerHTML = adminUsuarios.template
+        adminUsuarios.script()
+        admin.eventos()
         
     },
     about: ()=>{
-        document.querySelector('main').innerHTML = adminUser.template
-        adminUser.script()
+        document.querySelector('main').innerHTML = about.template
+        about.script()
     },
     eliminar: (event)=>{
-        let id = event.target.dataset.id
-        Swal.fire({
-            title: '¿Seguro?',
-            text: `Estás eliminando el usuario con id: ${id}`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, eliminar'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire(
-                'Borrado',
-                'El usuario ha sido eliminado',
-                'success'
-              )
-            }
-          })
-        const classId = document.getElementById(id); 
-        
+      let id = event.target.dataset.id
+      Swal.fire({
+          title: '¿Seguro?',
+          text: `Estás eliminando el usuario con id: ${id}`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, eliminar',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Borrado',
+              '¡El usuario ha sido eliminado con éxito!',
+              'success'
+            )
+            document.querySelector('.fila').setAttribute("class", "d-none")
+          }
+        })
     },
     editar: (event)=>{
         let id = event.target.dataset.id
         Swal.fire(`Estás editando el usuario con id: ${id}`)
-        const classId = document.getElementById(id); 
-        console.log(classId)
     }
 }
