@@ -7,7 +7,3 @@ document.querySelector('header').innerHTML = header.template
 header.script()
 
 
-
-document.querySelector('body').innerHTML = admin.template
-adminUsuarios.script()
-admin.script()
