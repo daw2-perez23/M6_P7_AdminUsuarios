@@ -14,6 +14,7 @@
     "vite": "^4.0.4"
   },
   "dependencies": {
+    "@multiavatar/multiavatar": "^1.0.7",
     "sweetalert2": "^11.7.1",
     "uuid": "^9.0.0"
   }

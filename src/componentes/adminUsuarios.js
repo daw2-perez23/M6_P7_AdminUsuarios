@@ -1,11 +1,12 @@
+import Swal from "sweetalert2";
 import { usuarios } from "./usuarios.js";
 
 
 export const adminUsuarios = {
     template: 
     `
-    <div class="d-flex justify-content-center">
-        <table class="table table-striped table-hover" style="width: 900px; height: 200px;">
+    <div>
+        <table class="table table-striped table-hover border border-2 rounded">
             <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -20,10 +21,8 @@ export const adminUsuarios = {
     </div>
     `,
 
-    script: ()=>{
-
+    generaTabla: ()=>{
         let tablaHTML = ' '
-
         usuarios.usuarios.forEach(user => {
             tablaHTML += `
                 <tr class="fila">
@@ -38,8 +37,34 @@ export const adminUsuarios = {
                 </tr>
             `
         });
-
+        
+        document.querySelector('#vistaAdmin').innerHTML = adminUsuarios.template
         document.querySelector('#tablaUsuarios').innerHTML = tablaHTML 
         
+    },
+    eliminar: (event)=>{
+        let id = event.target.dataset.id
+        Swal.fire({
+            title: '¿Seguro?',
+            text: `Estás eliminando el usuario con id: ${id}`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Borrado',
+                '¡El usuario ha sido eliminado con éxito!',
+                'success'
+              )
+              document.querySelector('.fila').setAttribute("class", "d-none")
+            }
+        })
+    },
+    editar: (event)=>{
+        let id = event.target.dataset.id
+        Swal.fire(`Estás editando el usuario con id: ${id}`)
     }
 }
