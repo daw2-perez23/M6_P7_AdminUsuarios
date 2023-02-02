@@ -4,7 +4,7 @@ import { router } from "../componentes/router"
 export const admin = {
 	template: 
     `
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div id="vistaAdmin" class="col-8">
             

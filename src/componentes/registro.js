@@ -21,7 +21,7 @@ export const registro = {
               </div>
               <div class="mb-3">
                 <label for="pass" class="form-label">Contraseña: </label>
-                <input type="pass" class="form-control" id="pass">
+                <input type="password" class="form-control" id="pass">
               </div>
               <button type="submit" class="btn btn-primary" id="enviar">Enviar</button>
             </form>
@@ -37,15 +37,22 @@ export const registro = {
 
   creaUsuario: (event) => {
     event.preventDefault()
-      var nuevoUsuario = {
-        id: uuidv4(),
-        nick: document.querySelector('#nick').value,
-        email: document.querySelector('#email').value,
-        pass: document.querySelector('#pass').value,
-      }
-    
-      usuarios.usuarios.push(nuevoUsuario)
-      //TODO: SUBIR DATOS A LA TABLA CON APPENDCHILD
+    const tr = document.createElement('tr', `id=${id}`)
+    let id = uuidv4()
+      const nuevoUsuario = `
+          <td>${id}</td>
+          <td>${document.querySelector('#nick').value}</td>
+          <td>${document.querySelector('#email').value}</td>
+          <td>${document.querySelector('#pass').value}</td>
+          <td>
+              <button data-id="${id}" type="button" class="btn btn-primary me-2 editar">Editar</button> 
+              <button data-id="${id}" type="button" class="btn btn-danger borrar">Eliminar</button>
+          </td>
+      `
+    tr.innerHTML = nuevoUsuario
+
+    document.querySelector('#tablaUsuarios').append(tr)
+
   },
 
   eventos: () => {

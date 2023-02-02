@@ -5,8 +5,8 @@ import { usuarios } from "./usuarios.js";
 export const adminUsuarios = {
     template: 
     `
-    <div>
-        <table class="table table-striped table-hover border border-2 rounded">
+    <div class="container-fluid">
+        <table class="table table-striped table-hover border border-2 rounded ">
             <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -25,7 +25,7 @@ export const adminUsuarios = {
         let tablaHTML = ' '
         usuarios.usuarios.forEach(user => {
             tablaHTML += `
-                <tr class="fila">
+                <tr id="${user.id}" class="fila">
                     <th scope="row">${user.id}</th>
                     <td>${user.nick}</td>
                     <td>${user.email}</td>
@@ -44,6 +44,8 @@ export const adminUsuarios = {
     },
     eliminar: (event)=>{
         let id = event.target.dataset.id
+        const columnaId = document.getElementById(id);
+        console.log(columnaId);
         Swal.fire({
             title: '¿Seguro?',
             text: `Estás eliminando el usuario con id: ${id}`,
@@ -59,7 +61,7 @@ export const adminUsuarios = {
                 '¡El usuario ha sido eliminado con éxito!',
                 'success'
               )
-              document.querySelector('.fila').setAttribute("class", "d-none")
+              columnaId.classList.add('fila-oculta')
             }
         })
     },

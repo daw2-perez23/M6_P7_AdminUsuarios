@@ -3,15 +3,15 @@ import { router } from "./router";
 export const header = {
     //Plantilla del nav con Bootstrap5
     template: `
-        <ul class="nav justify-content-center">
+        <ul class="nav justify-content-center navbar-dark bg-dark fw-bold navbar-expand-lg">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" id="home">Home</a>
+              <a class="nav-link user-select-none" aria-current="page" id="home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="admin">Admin</a>
+              <a class="nav-link user-select-none" id="admin">Admin</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="about">About</a>
+              <a class="nav-link user-select-none" id="about">About</a>
             </li>
         </ul>`
         ,
