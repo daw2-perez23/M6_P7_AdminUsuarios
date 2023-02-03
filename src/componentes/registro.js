@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import { adminUsuarios } from './adminUsuarios';
-import { usuarios } from './usuarios';
 import multiavatar from '@multiavatar/multiavatar/esm'
+import { usuarios } from './usuarios';
 
 export const registro = {
 
@@ -37,18 +36,39 @@ export const registro = {
 
   creaUsuario: (event) => {
     event.preventDefault()
-    const tr = document.createElement('tr', `id=${id}`)
+
+    let nick = document.querySelector('#nick').value
+    let email = document.querySelector('#email').value
+    let pass = document.querySelector('#pass').value
+
+    const tr = document.createElement('tr')
     let id = uuidv4()
+    tr.setAttribute("id", id);
+    tr.setAttribute("class", nick)
+
+    const newId = id.substr(0, 2);
+
+      const objNewUser = {
+        id: id,
+        nick: nick,
+        email: email,
+        pass: pass
+      }
+
+      usuarios.usuarios.push(objNewUser)
+      console.log(usuarios.usuarios);
+
       const nuevoUsuario = `
-          <td>${id}</td>
-          <td>${document.querySelector('#nick').value}</td>
-          <td>${document.querySelector('#email').value}</td>
-          <td>${document.querySelector('#pass').value}</td>
+          <td class="fw-bold">${newId}</td>
+          <td>${nick}</td>
+          <td>${email}</td>
+          <td>${pass}</td>
           <td>
-              <button data-id="${id}" type="button" class="btn btn-primary me-2 editar">Editar</button> 
+              <button data-id="${id}" data-nick="${nick}" data-email="${email}" data-pass="${pass}" type="button" class="btn btn-primary me-2 editar" data-bs-toggle="modal" data-bs-target="#myModal">Editar</button> 
               <button data-id="${id}" type="button" class="btn btn-danger borrar">Eliminar</button>
           </td>
       `
+
     tr.innerHTML = nuevoUsuario
 
     document.querySelector('#tablaUsuarios').append(tr)
@@ -66,6 +86,7 @@ export const registro = {
   avatar: () => {
     document.querySelector('#nick').addEventListener("keydown",(event)=>{
       document.querySelector('#avatar').innerHTML = multiavatar(event.target.value)
+
     })
   }
 
